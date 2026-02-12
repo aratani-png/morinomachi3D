@@ -9,19 +9,11 @@ import { MobileBottomSheet } from './components/layout/MobileBottomSheet'
 import { useAppStore } from './stores/appStore'
 
 function App() {
-  const { currentMode } = useAppStore()
+  const { currentMode: _currentMode } = useAppStore()
 
+  // PLY files are hosted externally - currently using preview system only
   const getSplatPath = () => {
-    switch (currentMode) {
-      case 'ground':
-        return '/assets/splats/ground/test.ply'
-      case 'view':
-        return undefined
-      case 'mansion':
-        return undefined
-      default:
-        return undefined
-    }
+    return undefined
   }
 
   const CurrentPanel = () => (
