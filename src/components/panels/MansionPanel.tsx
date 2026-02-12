@@ -100,7 +100,7 @@ export function MansionPanel() {
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                 }`}
               >
-                <span className="text-sm font-medium">{spot.name}</span>
+                <span className="text-sm font-medium pl-2">{spot.name}</span>
               </button>
             )
           })}
@@ -131,7 +131,7 @@ export function MansionPanel() {
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                     }`}
                   >
-                    <span className="text-sm font-medium">{spot.name}</span>
+                    <span className="text-sm font-medium pl-2">{spot.name}</span>
                   </button>
                 )
               })}
@@ -160,7 +160,7 @@ export function MansionPanel() {
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                     }`}
                   >
-                    <span className="text-sm font-medium">{spot.name}</span>
+                    <span className="text-sm font-medium pl-2">{spot.name}</span>
                   </button>
                 )
               })}
@@ -193,7 +193,7 @@ export function MansionPanel() {
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                 }`}
               >
-                <span className="text-sm font-medium">{room.name}</span>
+                <span className="text-sm font-medium pl-2">{room.name}</span>
               </button>
             )
           })}

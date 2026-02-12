@@ -100,7 +100,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                 }`}
               >
-                <span className="text-sm font-medium">{scene.name}</span>
+                <span className="text-sm font-medium pl-2">{scene.name}</span>
               </button>
             )
           })}
@@ -125,7 +125,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                           : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                       }`}
                     >
-                      <span className="text-sm font-medium">{facility.name}</span>
+                      <span className="text-sm font-medium pl-2">{facility.name}</span>
                       <span className={`text-xs ${isActive ? 'text-gray-300' : 'text-gray-400'}`}>{facility.distance}</span>
                     </button>
                   )
