@@ -56,7 +56,7 @@ export function PanoramaViewer({ imageUrl, title }: PanoramaViewerProps) {
     let isUserInteracting = false
     let onPointerDownMouseX = 0
     let onPointerDownMouseY = 0
-    let lon = 0
+    let lon = 180 // Initial view direction (window/sash side)
     let lat = 0
     let onPointerDownLon = 0
     let onPointerDownLat = 0
@@ -148,16 +148,25 @@ export function PanoramaViewer({ imageUrl, title }: PanoramaViewerProps) {
     const handleResize = () => {
       const width = container.clientWidth
       const height = container.clientHeight
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height)
+      if (width > 0 && height > 0) {
+        camera.aspect = width / height
+        camera.updateProjectionMatrix()
+        renderer.setSize(width, height)
+      }
     }
     window.addEventListener('resize', handleResize)
+
+    // ResizeObserver to handle container size changes (e.g., sidebar toggle)
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize()
+    })
+    resizeObserver.observe(container)
 
     // Cleanup
     return () => {
       cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
+      resizeObserver.disconnect()
       container.removeEventListener('pointerdown', onPointerDown)
       container.removeEventListener('pointermove', onPointerMove)
       container.removeEventListener('pointerup', onPointerUp)
@@ -179,20 +188,20 @@ export function PanoramaViewer({ imageUrl, title }: PanoramaViewerProps) {
       <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-stone-950/80">
-          <div className="text-stone-400 text-sm tracking-wider">Loading...</div>
+        <div className="absolute inset-0 flex items-center justify-center bg-white">
+          <div className="text-gray-500 text-sm tracking-wider">Loading...</div>
         </div>
       )}
 
       {title && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-stone-900/80 backdrop-blur-sm rounded-xl border border-white/10">
-          <p className="text-white/90 font-light tracking-wider">{title}</p>
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
+          <p className="text-gray-900 font-medium tracking-wider">{title}</p>
         </div>
       )}
 
       {/* Controls hint */}
-      <div className="absolute top-4 right-4 px-4 py-2 bg-stone-900/60 backdrop-blur-sm rounded-lg border border-white/10">
-        <p className="text-[10px] text-stone-400 tracking-wide">ドラッグで360°回転</p>
+      <div className="absolute top-4 right-4 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg border border-gray-200 shadow">
+        <p className="text-xs text-gray-500 tracking-wide">ドラッグで360°回転</p>
       </div>
     </div>
   )

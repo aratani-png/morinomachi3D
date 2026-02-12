@@ -14,6 +14,7 @@ export interface SceneManagerOptions {
 
 export class SceneManager {
   private canvas: HTMLCanvasElement
+  private container: HTMLElement
   private renderer: THREE.WebGLRenderer
   private scene: THREE.Scene
   private camera: THREE.PerspectiveCamera
@@ -21,16 +22,22 @@ export class SceneManager {
   private clock: THREE.Clock
   private splatViewer: GaussianSplats3D.Viewer | null = null
   private animationFrameId: number | null = null
-  
+  private resizeObserver: ResizeObserver | null = null
+
   private onProgress?: (progress: number, message: string) => void
   private onLoad?: () => void
   private onError?: (error: Error) => void
 
   constructor(options: SceneManagerOptions) {
     this.canvas = options.canvas
+    this.container = this.canvas.parentElement || document.body
     this.onProgress = options.onProgress
     this.onLoad = options.onLoad
     this.onError = options.onError
+
+    // Get container dimensions
+    const width = this.container.clientWidth || window.innerWidth
+    const height = this.container.clientHeight || window.innerHeight
 
     // Initialize Three.js renderer
     this.renderer = new THREE.WebGLRenderer({
@@ -39,7 +46,7 @@ export class SceneManager {
       powerPreference: 'high-performance',
     })
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.renderer.setSize(width, height)
     this.renderer.outputColorSpace = THREE.SRGBColorSpace
 
     // Initialize scene
@@ -49,7 +56,7 @@ export class SceneManager {
     // Initialize camera
     this.camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       0.1,
       10000
     )
@@ -65,6 +72,12 @@ export class SceneManager {
 
     // Handle window resize
     window.addEventListener('resize', this.handleResize.bind(this))
+
+    // Handle container resize (e.g., sidebar toggle)
+    this.resizeObserver = new ResizeObserver(() => {
+      this.handleResize()
+    })
+    this.resizeObserver.observe(this.container)
   }
 
   private isMobile(): boolean {
@@ -72,12 +85,14 @@ export class SceneManager {
   }
 
   private handleResize(): void {
-    const width = window.innerWidth
-    const height = window.innerHeight
+    const width = this.container.clientWidth || window.innerWidth
+    const height = this.container.clientHeight || window.innerHeight
 
-    this.camera.aspect = width / height
-    this.camera.updateProjectionMatrix()
-    this.renderer.setSize(width, height)
+    if (width > 0 && height > 0) {
+      this.camera.aspect = width / height
+      this.camera.updateProjectionMatrix()
+      this.renderer.setSize(width, height)
+    }
   }
 
   public async loadSplat(path: string): Promise<void> {
@@ -167,6 +182,11 @@ export class SceneManager {
   public dispose(): void {
     this.stopRenderLoop()
     window.removeEventListener('resize', this.handleResize.bind(this))
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect()
+      this.resizeObserver = null
+    }
 
     if (this.splatViewer) {
       this.splatViewer.dispose()

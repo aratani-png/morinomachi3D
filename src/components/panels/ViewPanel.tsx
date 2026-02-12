@@ -3,11 +3,11 @@ import { useAppStore } from '../../stores/appStore'
 
 type Direction = 'north' | 'east' | 'south' | 'west'
 
-const directions: { id: Direction; label: string; labelEn: string }[] = [
-  { id: 'north', label: '北', labelEn: 'N' },
-  { id: 'east', label: '東', labelEn: 'E' },
-  { id: 'south', label: '南', labelEn: 'S' },
-  { id: 'west', label: '西', labelEn: 'W' },
+const directions: { id: Direction; label: string }[] = [
+  { id: 'north', label: '北' },
+  { id: 'east', label: '東' },
+  { id: 'south', label: '南' },
+  { id: 'west', label: '西' },
 ]
 
 const floors = [5, 10, 15, 20, 25, 30]
@@ -51,95 +51,64 @@ export function ViewPanel() {
   const current = getCurrentSelection()
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-2">Panorama View</p>
-        <h3 className="text-2xl font-light text-white tracking-wide">眺望</h3>
-      </div>
-
-      {/* Step 1: Direction Selector */}
-      <div className="space-y-3">
-        <p className="text-[11px] tracking-wide text-stone-300">Step 1 — 方角を選択</p>
-        <div className="grid grid-cols-2 gap-2">
+    <div className="px-6 py-5">
+      {/* Step 1: Direction */}
+      <div className="mb-6">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+          方角を選択
+        </p>
+        <div className="grid grid-cols-4 gap-2">
           {directions.map((dir) => {
             const isSelected = selectedDirection === dir.id
             return (
               <button
                 key={dir.id}
                 onClick={() => setSelectedDirection(dir.id)}
-                className={`
-                  py-4 rounded-xl flex items-center justify-center gap-2
-                  transition-all duration-500
-                  ${isSelected
-                    ? 'bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent border border-amber-200/20 text-amber-100 shadow-lg shadow-amber-900/20'
-                    : 'bg-stone-900/30 border border-white/[0.04] text-stone-400 hover:text-stone-200 hover:border-white/[0.08] hover:bg-stone-800/40'
-                  }
-                `}
+                className={`py-3 rounded-lg text-sm font-medium transition-all duration-200 border ${
+                  isSelected
+                    ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                }`}
               >
-                <span className="text-lg font-light">{dir.label}</span>
-                <span className="text-[10px] opacity-50 tracking-widest">({dir.labelEn})</span>
+                {dir.label}
               </button>
             )
           })}
         </div>
       </div>
 
-      {/* Step 2: Floor Selector */}
-      <div className={`space-y-3 transition-opacity duration-500 ${selectedDirection ? 'opacity-100' : 'opacity-40'}`}>
-        <p className="text-[11px] tracking-wide text-stone-300">Step 2 — 階数を選択</p>
+      {/* Step 2: Floor */}
+      <div className={`transition-opacity duration-300 ${selectedDirection ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+          階数を選択
+        </p>
         <div className="grid grid-cols-3 gap-2">
           {floors.map((floor) => {
             const isSelected = current?.direction === selectedDirection && current?.floor === floor
-            const isPremium = floor >= 25
 
             return (
               <button
                 key={floor}
                 onClick={() => handleFloorSelect(floor)}
                 disabled={!selectedDirection}
-                className={`
-                  relative py-4 rounded-xl transition-all duration-300 text-center
-                  ${!selectedDirection ? 'cursor-not-allowed' : 'cursor-pointer'}
-                  ${isSelected
-                    ? 'bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent border border-amber-200/20 text-amber-100 shadow-lg shadow-amber-900/20'
-                    : selectedDirection
-                      ? 'bg-stone-900/30 border border-white/[0.04] text-stone-400 hover:text-stone-200 hover:border-white/[0.08] hover:bg-stone-800/40'
-                      : 'bg-stone-900/20 border border-white/[0.02] text-stone-600'
-                  }
-                `}
+                className={`py-3 rounded-lg text-sm font-medium transition-all duration-200 border ${
+                  isSelected
+                    ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                }`}
               >
-                <span className="text-xl font-extralight">{floor}</span>
-                <span className="text-[9px] ml-0.5 opacity-60">F</span>
-                {isPremium && (
-                  <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-gradient-to-br from-amber-300 to-amber-500 rounded-full shadow-lg shadow-amber-500/50" />
-                )}
+                {floor}F
               </button>
             )
           })}
         </div>
-
-        {/* Premium indicator */}
-        <div className="flex items-center gap-3 pt-2">
-          <span className="w-1.5 h-1.5 bg-gradient-to-br from-amber-300 to-amber-500 rounded-full" />
-          <span className="text-[9px] text-stone-600 tracking-wide">25F以上はプレミアム眺望</span>
-        </div>
       </div>
 
-      {/* Current Selection Info */}
+      {/* Current Selection */}
       {currentViewpoint && (
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-100/[0.08] via-yellow-50/[0.04] to-transparent border border-amber-200/10">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-[9px] text-amber-200/60 uppercase tracking-[0.2em] mb-1">Selected</p>
-              <p className="text-white/90 font-light tracking-wide">{currentViewpoint.name}</p>
-            </div>
-            {currentViewpoint.isPremium && (
-              <span className="px-3 py-1 bg-gradient-to-r from-amber-200/20 to-yellow-100/10 text-[9px] text-amber-200 rounded-full tracking-widest border border-amber-200/20">
-                PREMIUM
-              </span>
-            )}
-          </div>
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+          <p className="text-xs text-gray-400 mb-1">選択中</p>
+          <p className="text-sm font-medium text-gray-900">{currentViewpoint.name}</p>
         </div>
       )}
     </div>

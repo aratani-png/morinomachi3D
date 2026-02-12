@@ -4,46 +4,32 @@ import { ViewPanel } from '../panels/ViewPanel'
 import { MansionPanel } from '../panels/MansionPanel'
 import type { ModeType } from '../../types'
 
-const modes: { id: ModeType; label: string; sublabel: string }[] = [
-  { id: 'ground', label: '地上', sublabel: 'Ground View' },
-  { id: 'view', label: '眺望', sublabel: 'Panorama' },
-  { id: 'mansion', label: 'マンション', sublabel: 'Mansion' },
+const modes: { id: ModeType; label: string; number: string }[] = [
+  { id: 'ground', label: '周辺を見る', number: '01' },
+  { id: 'view', label: '眺望を見る', number: '02' },
+  { id: 'mansion', label: '建物を見る', number: '03' },
 ]
 
 export function Sidebar() {
   const { currentMode, setMode, isTransitioning, sidebarOpen } = useAppStore()
 
   return (
-    <aside className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-20 lg:w-80' : 'w-0 lg:w-0'}`}>
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950" />
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-900/5 via-transparent to-transparent" />
-      <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
-
+    <aside className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-80' : 'w-0'}`}>
+      {/* Background */}
+      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-y-0 right-0 w-px bg-gray-200" />
 
       {/* Content */}
       <div className="relative flex flex-col h-full overflow-hidden">
         {/* Logo Area */}
-        <div className="flex-shrink-0 p-4 lg:p-6 border-b border-white/[0.04]">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent rounded-xl flex items-center justify-center border border-amber-200/20 shadow-lg shadow-amber-900/10">
-              <svg className="w-5 h-5 lg:w-6 lg:h-6 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <div className={`transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
-              <h1 className="text-white/90 font-extralight tracking-[0.15em] text-sm">杜の街</h1>
-              <p className="text-amber-200/50 text-[9px] tracking-[0.3em] font-light">GRACE RESIDENCE</p>
-            </div>
-          </div>
+        <div className="flex-shrink-0 px-6 py-5 border-b border-gray-100">
+          <h1 className="text-gray-900 font-medium tracking-wide text-lg">杜の街グレース</h1>
+          <p className="text-gray-400 text-xs tracking-wider mt-1">MORINOMACHI GRACE</p>
         </div>
 
         {/* Mode Navigation */}
-        <nav className="flex-shrink-0 p-3 lg:p-5 border-b border-white/[0.04]">
-          <p className={`text-[9px] uppercase tracking-[0.25em] text-stone-600 mb-4 px-1 font-light transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
-            View Mode
-          </p>
-          <div className="flex lg:flex-col gap-1.5 lg:gap-2">
+        <nav className="flex-shrink-0 px-4 py-4 border-b border-gray-100">
+          <div className="flex flex-col gap-1">
             {modes.map((mode) => {
               const isActive = currentMode === mode.id
               return (
@@ -52,48 +38,21 @@ export function Sidebar() {
                   onClick={() => !isTransitioning && setMode(mode.id)}
                   disabled={isTransitioning}
                   className={`
-                    flex-1 lg:flex-none p-2.5 lg:p-3.5 rounded-xl transition-all duration-500 group
+                    w-full px-4 py-3 rounded-lg transition-all duration-200 text-left border
                     ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
                     ${isActive
-                      ? 'bg-gradient-to-r from-amber-100/[0.08] via-yellow-50/[0.04] to-transparent border border-amber-200/20 shadow-lg shadow-amber-900/10'
-                      : 'hover:bg-stone-800/40 border border-transparent hover:border-white/[0.04]'
+                      ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                      : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                     }
                   `}
                 >
-                  <div className="flex items-center justify-center lg:justify-start gap-3">
-                    <div className={`
-                      w-9 h-9 lg:w-9 lg:h-9 rounded-xl flex items-center justify-center transition-all duration-500
-                      ${isActive
-                        ? 'bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent border border-amber-200/20'
-                        : 'bg-stone-800/50 border border-white/[0.04] group-hover:bg-stone-700/50'
-                      }
-                    `}>
-                      {mode.id === 'ground' && (
-                        <svg className={`w-4 h-4 transition-colors ${isActive ? 'text-amber-200' : 'text-stone-500 group-hover:text-stone-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      )}
-                      {mode.id === 'view' && (
-                        <svg className={`w-4 h-4 transition-colors ${isActive ? 'text-amber-200' : 'text-stone-500 group-hover:text-stone-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
-                      )}
-                      {mode.id === 'mansion' && (
-                        <svg className={`w-4 h-4 transition-colors ${isActive ? 'text-amber-200' : 'text-stone-500 group-hover:text-stone-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
-                      )}
-                    </div>
-                    <div className={`text-left transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
-                      <p className={`text-sm font-light tracking-wide ${isActive ? 'text-white/90' : 'text-stone-400 group-hover:text-stone-200'}`}>
-                        {mode.label}
-                      </p>
-                      <p className={`text-[9px] tracking-wider ${isActive ? 'text-amber-200/60' : 'text-stone-600'}`}>
-                        {mode.sublabel}
-                      </p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <span className={`text-xs font-medium ${isActive ? 'text-gray-400' : 'text-gray-400'}`}>
+                      {mode.number}
+                    </span>
+                    <span className="text-sm font-medium">
+                      {mode.label}
+                    </span>
                   </div>
                 </button>
               )
@@ -102,12 +61,11 @@ export function Sidebar() {
         </nav>
 
         {/* Mode-specific Panel Content */}
-        <div className={`flex-1 overflow-y-auto p-5 custom-scrollbar transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
+        <div className="flex-1 overflow-y-auto">
           <GroundPanel />
           <ViewPanel />
           <MansionPanel />
         </div>
-
       </div>
     </aside>
   )

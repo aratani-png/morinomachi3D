@@ -25,17 +25,17 @@ function App() {
   )
 
   return (
-    <div className="relative w-full h-full bg-slate-900">
+    <div className="relative w-full h-full bg-gray-100">
       {/* Left Sidebar - Navigation + Panels */}
       <Sidebar />
 
       {/* Sidebar Toggle Button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
-        className={`hidden lg:flex fixed bottom-6 z-50 w-10 h-16 bg-stone-900 border border-white/10 rounded-r-xl items-center justify-center hover:bg-stone-800 transition-all duration-300 ${sidebarOpen ? 'left-80' : 'left-0'}`}
+        className={`fixed bottom-6 z-50 w-10 h-10 bg-white border border-gray-200 rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-all duration-300 ${sidebarOpen ? 'left-[19rem]' : 'left-4'}`}
       >
         <svg
-          className={`w-6 h-6 text-stone-400 transition-transform duration-300 ${sidebarOpen ? '' : 'rotate-180'}`}
+          className={`w-5 h-5 text-gray-600 transition-transform duration-300 ${sidebarOpen ? '' : 'rotate-180'}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -45,7 +45,7 @@ function App() {
       </button>
 
       {/* Main Content Area */}
-      <div className={`absolute top-0 bottom-0 right-0 transition-all duration-300 ${sidebarOpen ? 'left-20 lg:left-80' : 'left-0'}`}>
+      <div className={`absolute top-0 bottom-0 right-0 transition-all duration-300 ${sidebarOpen ? 'left-80' : 'left-0'}`}>
         {/* 3D Viewer */}
         <Viewer splatPath={getSplatPath()} />
 

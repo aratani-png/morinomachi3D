@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useAppStore } from '../../stores/appStore'
-import { ContentBadge } from '../ui/ContentBadge'
 
-type MansionViewType = 'walk' | 'cg'
+type MansionViewType = 'common' | 'private' | 'vr'
 
 const cgSpots = [
   { id: 'entrance', name: 'エントランス', image: 'white:' },
@@ -37,7 +36,7 @@ const rooms = [
 
 export function MansionPanel() {
   const { currentMode, currentRoom, setCurrentRoom, setPreviewImage } = useAppStore()
-  const [viewType, setViewType] = useState<MansionViewType>('walk')
+  const [viewType, setViewType] = useState<MansionViewType>('common')
   const [selectedCgSpot, setSelectedCgSpot] = useState<string | null>(null)
   const [selectedHallSpot, setSelectedHallSpot] = useState<string | null>(null)
 
@@ -49,77 +48,67 @@ export function MansionPanel() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-2">Mansion</p>
-        <h3 className="text-2xl font-light text-white tracking-wide">マンション</h3>
+    <div className="px-6 py-5">
+      {/* Tab Toggle */}
+      <div className="flex gap-2 mb-6">
+        <button
+          onClick={() => setViewType('common')}
+          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+            viewType === 'common'
+              ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+          }`}
+        >
+          散策
+        </button>
+        <button
+          onClick={() => setViewType('private')}
+          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+            viewType === 'private'
+              ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+          }`}
+        >
+          CGパース
+        </button>
+        <button
+          onClick={() => setViewType('vr')}
+          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+            viewType === 'vr'
+              ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+          }`}
+        >
+          室内VR
+        </button>
       </div>
 
-      {/* View Toggle */}
-      <div className="relative bg-stone-900/40 rounded-2xl p-1 border border-white/[0.06]">
-        <div className="grid grid-cols-2 gap-1">
-          <button
-            onClick={() => setViewType('walk')}
-            className={`
-              py-3 rounded-xl text-sm tracking-wider transition-all duration-500
-              ${viewType === 'walk'
-                ? 'bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent text-amber-100 shadow-lg shadow-amber-900/20'
-                : 'text-stone-500 hover:text-stone-300'
-              }
-            `}
-          >
-            散策
-          </button>
-          <button
-            onClick={() => setViewType('cg')}
-            className={`
-              py-3 rounded-xl text-sm tracking-wider transition-all duration-500
-              ${viewType === 'cg'
-                ? 'bg-gradient-to-br from-amber-200/20 via-yellow-100/10 to-transparent text-amber-100 shadow-lg shadow-amber-900/20'
-                : 'text-stone-500 hover:text-stone-300'
-              }
-            `}
-          >
-            パース
-          </button>
+      {viewType === 'common' && (
+        <div className="space-y-2">
+          {cgSpots.map((spot) => {
+            const isActive = selectedCgSpot === spot.id
+            return (
+              <button
+                key={spot.id}
+                onClick={() => handleCgSpotSelect(spot)}
+                className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                  isActive
+                    ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                }`}
+              >
+                <span className="text-sm font-medium">{spot.name}</span>
+              </button>
+            )
+          })}
         </div>
-      </div>
+      )}
 
-      {viewType === 'walk' ? (
-        <div className="space-y-3">
-          {/* 共用施設 - 散策 */}
-          <p className="text-[11px] uppercase tracking-[0.2em] text-stone-300 font-light">共用施設</p>
-          <div className="space-y-2">
-            {cgSpots.map((spot) => {
-              const isActive = selectedCgSpot === spot.id
-              return (
-                <button
-                  key={spot.id}
-                  onClick={() => handleCgSpotSelect(spot)}
-                  className={`
-                    w-full px-4 py-3.5 rounded-xl transition-all duration-300 text-left
-                    flex items-center justify-between group
-                    ${isActive
-                      ? 'bg-gradient-to-r from-amber-100/10 via-yellow-50/5 to-transparent border border-amber-200/20 shadow-lg shadow-amber-900/10'
-                      : 'bg-stone-900/30 border border-white/[0.04] hover:border-white/[0.08] hover:bg-stone-800/40'
-                    }
-                  `}
-                >
-                  <span className={`text-[13px] tracking-wide ${isActive ? 'text-amber-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
-                    {spot.name}
-                  </span>
-                  <ContentBadge type="gs" />
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      ) : (
+      {viewType === 'private' && (
         <div className="space-y-6">
           {/* 1F Section */}
-          <div className="space-y-3">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-300 font-light">1F</p>
+          <div>
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">1F</p>
             <div className="space-y-2">
               {floor1Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
@@ -131,19 +120,13 @@ export function MansionPanel() {
                       setCurrentRoom(null)
                       setPreviewImage(spot.image, spot.name)
                     }}
-                    className={`
-                      w-full px-4 py-3.5 rounded-xl transition-all duration-300 text-left
-                      flex items-center justify-between group
-                      ${isActive
-                        ? 'bg-gradient-to-r from-amber-100/10 via-yellow-50/5 to-transparent border border-amber-200/20 shadow-lg shadow-amber-900/10'
-                        : 'bg-stone-900/30 border border-white/[0.04] hover:border-white/[0.08] hover:bg-stone-800/40'
-                      }
-                    `}
+                    className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                      isActive
+                        ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    }`}
                   >
-                    <span className={`text-[13px] tracking-wide ${isActive ? 'text-amber-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
-                      {spot.name}
-                    </span>
-                    <ContentBadge type="cg" />
+                    <span className="text-sm font-medium">{spot.name}</span>
                   </button>
                 )
               })}
@@ -151,8 +134,8 @@ export function MansionPanel() {
           </div>
 
           {/* 2F Section */}
-          <div className="space-y-3">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-300 font-light">2F</p>
+          <div>
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">2F</p>
             <div className="space-y-2">
               {floor2Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
@@ -164,64 +147,49 @@ export function MansionPanel() {
                       setCurrentRoom(null)
                       setPreviewImage(spot.image, spot.name)
                     }}
-                    className={`
-                      w-full px-4 py-3.5 rounded-xl transition-all duration-300 text-left
-                      flex items-center justify-between group
-                      ${isActive
-                        ? 'bg-gradient-to-r from-amber-100/10 via-yellow-50/5 to-transparent border border-amber-200/20 shadow-lg shadow-amber-900/10'
-                        : 'bg-stone-900/30 border border-white/[0.04] hover:border-white/[0.08] hover:bg-stone-800/40'
-                      }
-                    `}
+                    className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                      isActive
+                        ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    }`}
                   >
-                    <span className={`text-[13px] tracking-wide ${isActive ? 'text-amber-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
-                      {spot.name}
-                    </span>
-                    <ContentBadge type="cg" />
+                    <span className="text-sm font-medium">{spot.name}</span>
                   </button>
                 )
               })}
             </div>
           </div>
+        </div>
+      )}
 
-          {/* Room VR Section */}
-          <div className="space-y-3">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone-300 font-light">室内VR</p>
-            <div className="space-y-2">
-              {rooms.map((room) => {
-                const isActive = currentRoom?.id === room.id
-                return (
-                  <button
-                    key={room.id}
-                    onClick={() => {
-                      setCurrentRoom({
-                        id: room.id,
-                        name: room.name,
-                        floor: 10,
-                        type: '',
-                        modelPath: '',
-                      })
-                      setSelectedHallSpot(null)
-                      setPreviewImage(room.image, room.name)
-                    }}
-                    className={`
-                      w-full px-4 py-3 rounded-xl transition-all duration-300 text-left group
-                      ${isActive
-                        ? 'bg-gradient-to-r from-amber-100/10 via-yellow-50/5 to-transparent border border-amber-200/20 shadow-lg shadow-amber-900/10'
-                        : 'bg-stone-900/30 border border-white/[0.04] hover:border-white/[0.08] hover:bg-stone-800/40'
-                      }
-                    `}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[13px] tracking-wide ${isActive ? 'text-amber-100' : 'text-stone-400 group-hover:text-stone-200'}`}>
-                        {room.name}
-                      </span>
-                      <ContentBadge type="vr" />
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
+      {viewType === 'vr' && (
+        <div className="grid grid-cols-2 gap-2">
+          {rooms.map((room) => {
+            const isActive = currentRoom?.id === room.id
+            return (
+              <button
+                key={room.id}
+                onClick={() => {
+                  setCurrentRoom({
+                    id: room.id,
+                    name: room.name,
+                    floor: 10,
+                    type: '',
+                    modelPath: '',
+                  })
+                  setSelectedHallSpot(null)
+                  setPreviewImage(room.image, room.name)
+                }}
+                className={`px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                  isActive
+                    ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                }`}
+              >
+                <span className="text-sm font-medium">{room.name}</span>
+              </button>
+            )
+          })}
         </div>
       )}
     </div>

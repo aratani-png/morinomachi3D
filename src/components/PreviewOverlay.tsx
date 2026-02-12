@@ -20,8 +20,8 @@ export function PreviewOverlay() {
     return (
       <div className="absolute inset-0 bg-white">
         {previewTitle && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-stone-900/80 backdrop-blur-sm rounded-xl border border-white/10">
-            <p className="text-white/90 font-light tracking-wider">{previewTitle}</p>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
+            <p className="text-gray-900 font-medium tracking-wider">{previewTitle}</p>
           </div>
         )}
       </div>
@@ -30,7 +30,7 @@ export function PreviewOverlay() {
 
   if (isIframe && iframeUrl) {
     return (
-      <div className="absolute inset-0 bg-stone-950">
+      <div className="absolute inset-0 bg-white">
         <iframe
           src={iframeUrl}
           className="w-full h-full border-0"
@@ -38,8 +38,8 @@ export function PreviewOverlay() {
           allowFullScreen
         />
         {previewTitle && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-stone-900/80 backdrop-blur-sm rounded-xl border border-white/10">
-            <p className="text-white/90 font-light tracking-wider">{previewTitle}</p>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
+            <p className="text-gray-900 font-medium tracking-wider">{previewTitle}</p>
           </div>
         )}
       </div>
@@ -48,14 +48,14 @@ export function PreviewOverlay() {
 
   if (isPanorama) {
     return (
-      <div className="absolute inset-0 bg-stone-950">
+      <div className="absolute inset-0 bg-white">
         <PanoramaViewer imageUrl={previewImage} title={previewTitle} />
       </div>
     )
   }
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-stone-950/90">
+    <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
       <div className="relative w-full h-full flex items-center justify-center p-8">
         <img
           src={previewImage}
@@ -63,8 +63,8 @@ export function PreviewOverlay() {
           className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
         />
         {previewTitle && (
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-3 bg-stone-900/80 backdrop-blur-sm rounded-xl border border-white/10">
-            <p className="text-white/90 font-light tracking-wider text-lg">{previewTitle}</p>
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
+            <p className="text-gray-900 font-medium tracking-wider text-lg">{previewTitle}</p>
           </div>
         )}
       </div>
