@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useAppStore } from '../../stores/appStore'
-import { ContentBadge } from '../ui/ContentBadge'
 
 type Direction = 'north' | 'east' | 'south' | 'west'
 

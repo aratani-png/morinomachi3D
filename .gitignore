@@ -27,3 +27,5 @@ dist-ssr
 *.ply
 *.ksplat
 public/assets/splats/
+
+.vercel

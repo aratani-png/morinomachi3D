@@ -1,0 +1,9 @@
+# Large files
+*.ply
+*.ksplat
+public/assets/splats/
+photo/
+
+# Development
+node_modules/
+.git/
