@@ -56,11 +56,26 @@ export function Sidebar() {
         </nav>
 
         {/* Mode-specific Panel Content */}
-        <div className="flex-1 overflow-y-auto">
-          <GroundPanel />
-          <ViewPanel />
-          <MansionPanel />
+        <div className={`flex-1 overflow-y-auto transition-all duration-300 ${
+          currentMode === null
+            ? 'opacity-30 pointer-events-none'
+            : 'opacity-100'
+        }`}>
+          {/* Show ground panel as preview when no mode selected */}
+          {currentMode === null && <GroundPanel forceShow />}
+          {currentMode === 'ground' && <GroundPanel />}
+          {currentMode === 'view' && <ViewPanel />}
+          {currentMode === 'mansion' && <MansionPanel />}
         </div>
+
+        {/* Hint when no mode selected */}
+        {currentMode === null && (
+          <div className="absolute bottom-20 left-0 right-0 px-6 py-4 bg-gradient-to-t from-white via-white to-transparent">
+            <p className="text-center text-sm text-gray-400">
+              上のボタンを選択してください
+            </p>
+          </div>
+        )}
       </div>
     </aside>
   )

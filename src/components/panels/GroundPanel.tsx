@@ -35,7 +35,11 @@ const facilities: { category: string; items: Facility[] }[] = [
   },
 ]
 
-export function GroundPanel() {
+interface GroundPanelProps {
+  forceShow?: boolean
+}
+
+export function GroundPanel({ forceShow = false }: GroundPanelProps) {
   const { currentMode, setPreviewImage } = useAppStore()
   const [groundView, setGroundView] = useState<GroundView>('walk')
   const [selectedScene, setSelectedScene] = useState<string>('free')
@@ -45,7 +49,7 @@ export function GroundPanel() {
     setPreviewImage(scene.image, scene.name)
   }
 
-  if (currentMode !== 'ground') return null
+  if (!forceShow && currentMode !== 'ground') return null
 
   return (
     <div className="px-6 py-5">

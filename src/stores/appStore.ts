@@ -2,8 +2,8 @@ import { create } from 'zustand'
 import type { ModeType, Viewpoint, Room } from '../types'
 
 interface AppState {
-  // Current mode
-  currentMode: ModeType
+  // Current mode (null = initial state, no mode selected)
+  currentMode: ModeType | null
   setMode: (mode: ModeType) => void
 
   // Loading state
@@ -37,8 +37,8 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>((set) => ({
-  // Mode
-  currentMode: 'ground',
+  // Mode (null = initial state, no mode selected yet)
+  currentMode: null,
   setMode: (mode) => set({ currentMode: mode }),
 
   // Loading
