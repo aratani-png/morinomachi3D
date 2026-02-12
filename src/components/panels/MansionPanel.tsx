@@ -94,13 +94,13 @@ export function MansionPanel() {
               <button
                 key={spot.id}
                 onClick={() => handleCgSpotSelect(spot)}
-                className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
+                className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
-                <span className="text-sm font-medium pl-2">{spot.name}</span>
+                <span className="text-sm font-medium">{spot.name}</span>
               </button>
             )
           })}
@@ -111,7 +111,7 @@ export function MansionPanel() {
         <div className="space-y-8">
           {/* 1F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">1F</p>
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">1F</p>
             <div className="space-y-4">
               {floor1Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
@@ -125,13 +125,13 @@ export function MansionPanel() {
                       const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
                       setPreviewImage(spot.image, title)
                     }}
-                    className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
+                    className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                     }`}
                   >
-                    <span className="text-sm font-medium pl-2">{spot.name}</span>
+                    <span className="text-sm font-medium">{spot.name}</span>
                   </button>
                 )
               })}
@@ -140,7 +140,7 @@ export function MansionPanel() {
 
           {/* 2F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">2F</p>
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">2F</p>
             <div className="space-y-4">
               {floor2Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
@@ -154,13 +154,13 @@ export function MansionPanel() {
                       const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
                       setPreviewImage(spot.image, title)
                     }}
-                    className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
+                    className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                     }`}
                   >
-                    <span className="text-sm font-medium pl-2">{spot.name}</span>
+                    <span className="text-sm font-medium">{spot.name}</span>
                   </button>
                 )
               })}

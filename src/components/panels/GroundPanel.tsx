@@ -94,13 +94,13 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
               <button
                 key={scene.id}
                 onClick={() => handleSceneSelect(scene)}
-                className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
+                className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
-                <span className="text-sm font-medium pl-2">{scene.name}</span>
+                <span className="text-sm font-medium">{scene.name}</span>
               </button>
             )
           })}
@@ -109,7 +109,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
         <div className="space-y-8">
           {facilities.map((group) => (
             <div key={group.category}>
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">
                 {group.category}
               </p>
               <div className="space-y-4">
@@ -119,14 +119,14 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                     <button
                       key={facility.id}
                       onClick={() => handleFacilitySelect(facility)}
-                      className={`w-full flex items-center justify-between px-5 py-5 rounded-xl transition-all duration-200 border ${
+                      className={`w-full flex flex-col items-center justify-center px-5 py-5 rounded-xl transition-all duration-200 border ${
                         isActive
                           ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                           : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                       }`}
                     >
-                      <span className="text-sm font-medium pl-2">{facility.name}</span>
-                      <span className={`text-xs ${isActive ? 'text-gray-300' : 'text-gray-400'}`}>{facility.distance}</span>
+                      <span className="text-sm font-medium">{facility.name}</span>
+                      <span className={`text-xs mt-1 ${isActive ? 'text-gray-300' : 'text-gray-400'}`}>{facility.distance}</span>
                     </button>
                   )
                 })}
