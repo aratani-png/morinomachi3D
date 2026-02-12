@@ -4,6 +4,7 @@ import { useAppStore } from '../../stores/appStore'
 type MansionViewType = 'common' | 'private' | 'vr'
 
 const cgSpots = [
+  { id: 'mansion', name: 'マンション前', image: '/images/ground/マンション.png' },
   { id: 'entrance', name: 'エントランス', image: 'white:' },
   { id: 'lobby', name: 'エントランスロビー', image: 'white:' },
   { id: 'parking', name: '駐車場', image: 'white:' },

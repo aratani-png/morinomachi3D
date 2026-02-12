@@ -5,7 +5,6 @@ type GroundView = 'walk' | 'map'
 
 const walkScenes = [
   { id: 'free', name: '3D散策', image: 'iframe:https://arrival.space/79614791_9081' },
-  { id: 'mansion', name: 'マンション前', image: '/images/ground/マンション.png' },
   { id: 'grace', name: '杜の街グレース', image: '/images/ground/杜の街.png' },
   { id: 'busstop', name: 'バス停・駐車場', image: '/images/ground/バス停.png' },
 ]
