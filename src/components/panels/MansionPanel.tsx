@@ -187,13 +187,13 @@ export function MansionPanel() {
                   setSelectedHallSpot(null)
                   setPreviewImage(room.image, room.name)
                 }}
-                className={`px-4 py-5 rounded-xl text-left transition-all duration-200 border ${
+                className={`px-4 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                 }`}
               >
-                <span className="text-sm font-medium pl-2">{room.name}</span>
+                <span className="text-sm font-medium">{room.name}</span>
               </button>
             )
           })}
