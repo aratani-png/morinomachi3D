@@ -6,12 +6,27 @@ export function PreviewOverlay() {
 
   if (!previewImage) return null
 
+  // Check if it's a white screen
+  const isWhite = previewImage.startsWith('white:')
+
   // Check if it's an iframe embed
   const isIframe = previewImage.startsWith('iframe:')
   const iframeUrl = isIframe ? previewImage.replace('iframe:', '') : null
 
   // Check if it's a VR panorama image
   const isPanorama = previewImage.includes('/images/vr/')
+
+  if (isWhite) {
+    return (
+      <div className="absolute inset-0 bg-white">
+        {previewTitle && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-stone-900/80 backdrop-blur-sm rounded-xl border border-white/10">
+            <p className="text-white/90 font-light tracking-wider">{previewTitle}</p>
+          </div>
+        )}
+      </div>
+    )
+  }
 
   if (isIframe && iframeUrl) {
     return (

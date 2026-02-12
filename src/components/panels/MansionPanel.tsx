@@ -5,22 +5,21 @@ import { ContentBadge } from '../ui/ContentBadge'
 type MansionViewType = 'walk' | 'cg'
 
 const cgSpots = [
-  { id: 'entrance', name: 'エントランス', image: null },
-  { id: 'lobby', name: 'エントランスロビー', image: null },
-  { id: 'parking', name: '駐車場', image: null },
-  { id: 'garden', name: '中庭', image: null },
+  { id: 'entrance', name: 'エントランス', image: 'white:' },
+  { id: 'lobby', name: 'エントランスロビー', image: 'white:' },
+  { id: 'parking', name: '駐車場', image: 'white:' },
   { id: 'water', name: '水盤', image: '/images/mansion/水盤.png' },
 ]
 
 const floor1Spots = [
-  { id: 'entrance-hall', name: 'エントランスホール' },
+  { id: 'entrance-hall', name: 'エントランスホール', image: 'white:' },
 ]
 
 const floor2Spots = [
-  { id: 'lounge', name: 'ラウンジ' },
-  { id: 'theater', name: 'シアタールーム' },
-  { id: 'study', name: 'スタディルーム' },
-  { id: 'guest', name: 'ゲストルーム' },
+  { id: 'lounge', name: 'ラウンジ', image: 'white:' },
+  { id: 'theater', name: 'シアタールーム', image: 'white:' },
+  { id: 'study', name: 'スタディルーム', image: 'white:' },
+  { id: 'guest', name: 'ゲストルーム', image: 'white:' },
 ]
 
 const rooms = [
@@ -46,9 +45,7 @@ export function MansionPanel() {
 
   const handleCgSpotSelect = (spot: typeof cgSpots[0]) => {
     setSelectedCgSpot(spot.id)
-    if (spot.image) {
-      setPreviewImage(spot.image, spot.name)
-    }
+    setPreviewImage(spot.image, spot.name)
   }
 
   return (
@@ -132,6 +129,7 @@ export function MansionPanel() {
                     onClick={() => {
                       setSelectedHallSpot(spot.id)
                       setCurrentRoom(null)
+                      setPreviewImage(spot.image, spot.name)
                     }}
                     className={`
                       w-full px-4 py-3.5 rounded-xl transition-all duration-300 text-left
@@ -164,6 +162,7 @@ export function MansionPanel() {
                     onClick={() => {
                       setSelectedHallSpot(spot.id)
                       setCurrentRoom(null)
+                      setPreviewImage(spot.image, spot.name)
                     }}
                     className={`
                       w-full px-4 py-3.5 rounded-xl transition-all duration-300 text-left
