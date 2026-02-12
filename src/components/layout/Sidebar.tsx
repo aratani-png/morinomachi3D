@@ -22,7 +22,7 @@ export function Sidebar() {
       {/* Content */}
       <div className="relative flex flex-col h-full overflow-hidden">
         {/* Logo Area */}
-        <div className="flex-shrink-0 px-6 py-5 border-b border-gray-100">
+        <div className="flex-shrink-0 px-6 py-5 border-b border-gray-100 text-center">
           <h1 className="text-gray-900 font-medium tracking-wide text-lg">杜の街グレース</h1>
           <p className="text-gray-400 text-xs tracking-wider mt-1">MORINOMACHI GRACE</p>
         </div>
