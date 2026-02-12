@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>3DGS - Morinomachi</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    #info { position: absolute; top: 10px; left: 10px; color: white; background: rgba(0,0,0,0.7); padding: 10px; font-family: sans-serif; z-index: 100; }
+  </style>
+</head>
+<body>
+  <div id="info">Loading main.ply (895MB, please wait)...</div>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module">
+    import * as GaussianSplats3D from 'https://cdn.jsdelivr.net/npm/@mkkellogg/gaussian-splats-3d@0.4.2/build/gaussian-splats-3d.module.min.js';
+    import * as THREE from 'three';
+
+    const info = document.getElementById('info');
+    const startTime = Date.now();
+
+    // Data center: X=-108, Y=-54, Z=-17
+    // Data size: 616 x 151 x 751
+    const viewer = new GaussianSplats3D.Viewer({
+      cameraUp: [0, 0, 1],
+      initialCameraPosition: [-108, -100, 0],
+      initialCameraLookAt: [-108, 0, 0],
+      selfDrivenMode: true,
+      useBuiltInControls: true,
+      sharedMemoryForWorkers: false,
+    });
+
+    viewer.renderer.setClearColor(new THREE.Color(0x87CEEB));
+
+    viewer.addSplatScene('./assets/splats/ground/main.ply', {
+      showLoadingUI: false,
+      progressiveLoad: true,
+      onProgress: (progress, message) => {
+        const pct = (progress * 100).toFixed(1);
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(0);
+        info.textContent = 'Loading: ' + pct + '% (' + elapsed + 's) - ' + (message || 'Processing...');
+      }
+    })
+    .then(() => {
+      const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+      viewer.start();
+      info.textContent = 'Loaded in ' + elapsed + 's! Drag=rotate, Scroll=zoom, WASD=move';
+    })
+    .catch(err => {
+      info.textContent = 'Error: ' + err.message;
+    });
+  </script>
+</body>
+</html>
