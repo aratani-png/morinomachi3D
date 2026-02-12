@@ -29,7 +29,7 @@ export function Sidebar() {
 
         {/* Mode Navigation */}
         <nav className="flex-shrink-0 px-4 pt-4 pb-6 border-b border-gray-100">
-          <div className="flex gap-2">
+          <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50">
             {modes.map((mode) => {
               const isActive = currentMode === mode.id
               return (

@@ -53,10 +53,10 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
   return (
     <div className="px-6 py-5">
       {/* Tab Toggle */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50 mb-6">
         <button
           onClick={() => setGroundView('walk')}
-          className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'walk'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -69,7 +69,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
             setGroundView('map')
             setPreviewImage('/images/ground/map.jpg', '周辺MAP')
           }}
-          className={`px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'map'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'

@@ -53,10 +53,10 @@ export function MansionPanel() {
   return (
     <div className="px-6 py-5">
       {/* Tab Toggle */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50 mb-6">
         <button
           onClick={() => setViewType('common')}
-          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'common'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -66,7 +66,7 @@ export function MansionPanel() {
         </button>
         <button
           onClick={() => setViewType('private')}
-          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'private'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -76,7 +76,7 @@ export function MansionPanel() {
         </button>
         <button
           onClick={() => setViewType('vr')}
-          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'vr'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
