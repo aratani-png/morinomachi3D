@@ -11,7 +11,7 @@ const modes: { id: ModeType; label: string; sublabel: string }[] = [
 ]
 
 export function Sidebar() {
-  const { currentMode, setMode, isTransitioning, sidebarOpen, setSidebarOpen } = useAppStore()
+  const { currentMode, setMode, isTransitioning, sidebarOpen } = useAppStore()
 
   return (
     <aside className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-20 lg:w-80' : 'w-0 lg:w-0'}`}>
