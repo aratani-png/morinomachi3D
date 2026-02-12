@@ -51,8 +51,8 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
 
   const handleFacilitySelect = (facility: Facility) => {
     setSelectedFacility(facility.id)
-    // Show white screen with route info (will be animation in the future)
-    setPreviewImage('white:', `マンションから${facility.name}まで ${facility.distance}`)
+    // Show map with route info (will be animation in the future)
+    setPreviewImage('/images/ground/map.jpg', `マンションから${facility.name}まで ${facility.distance}`)
   }
 
   if (!forceShow && currentMode !== 'ground') return null
