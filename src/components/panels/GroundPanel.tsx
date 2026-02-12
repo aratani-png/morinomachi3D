@@ -42,10 +42,17 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
   const { currentMode, setPreviewImage } = useAppStore()
   const [groundView, setGroundView] = useState<GroundView>('walk')
   const [selectedScene, setSelectedScene] = useState<string>('free')
+  const [selectedFacility, setSelectedFacility] = useState<string | null>(null)
 
   const handleSceneSelect = (scene: typeof walkScenes[0]) => {
     setSelectedScene(scene.id)
     setPreviewImage(scene.image, scene.name)
+  }
+
+  const handleFacilitySelect = (facility: Facility) => {
+    setSelectedFacility(facility.id)
+    // Show white screen with route info (will be animation in the future)
+    setPreviewImage('white:', `マンションから${facility.name}まで ${facility.distance}`)
   }
 
   if (!forceShow && currentMode !== 'ground') return null
@@ -105,16 +112,24 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
               <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
                 {group.category}
               </p>
-              <div className="space-y-1">
-                {group.items.map((facility) => (
-                  <div
-                    key={facility.id}
-                    className="flex items-center justify-between px-4 py-3 bg-gray-50 rounded-lg"
-                  >
-                    <span className="text-sm text-gray-700">{facility.name}</span>
-                    <span className="text-xs text-gray-400">{facility.distance}</span>
-                  </div>
-                ))}
+              <div className="space-y-2">
+                {group.items.map((facility) => {
+                  const isActive = selectedFacility === facility.id
+                  return (
+                    <button
+                      key={facility.id}
+                      onClick={() => handleFacilitySelect(facility)}
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 border ${
+                        isActive
+                          ? 'bg-gray-900 text-white border-gray-900 shadow-md'
+                          : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                      }`}
+                    >
+                      <span className="text-sm font-medium">{facility.name}</span>
+                      <span className={`text-xs ${isActive ? 'text-gray-300' : 'text-gray-400'}`}>{facility.distance}</span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
           ))}
