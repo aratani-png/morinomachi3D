@@ -4,6 +4,7 @@ import { useAppStore } from '../../stores/appStore'
 type MansionViewType = 'common' | 'private' | 'vr'
 
 const cgSpots = [
+  { id: 'free', name: 'フリー散策', image: 'iframe:https://arrival.space/79614791_9081' },
   { id: 'mansion', name: 'マンション前', image: '/images/ground/マンション.png' },
   { id: 'entrance', name: 'エントランス', image: 'white:' },
   { id: 'lobby', name: 'エントランスロビー', image: 'white:' },
@@ -23,16 +24,16 @@ const floor2Spots = [
 ]
 
 const rooms = [
-  { id: 'a', name: 'Type A', image: '/images/vr/A.jpg' },
-  { id: 'b', name: 'Type B', image: '/images/vr/B.jpg' },
-  { id: 'c', name: 'Type C', image: '/images/vr/A.jpg' },
-  { id: 'd', name: 'Type D', image: '/images/vr/B.jpg' },
-  { id: 'e', name: 'Type E', image: '/images/vr/A.jpg' },
-  { id: 'f', name: 'Type F', image: '/images/vr/B.jpg' },
-  { id: 'g', name: 'Type G', image: '/images/vr/A.jpg' },
-  { id: 'h', name: 'Type H', image: '/images/vr/B.jpg' },
-  { id: 'i', name: 'Type I', image: '/images/vr/A.jpg' },
-  { id: 'j', name: 'Type J', image: '/images/vr/J.jpg' },
+  { id: 'a', name: 'Aタイプ', image: '/images/vr/A.jpg' },
+  { id: 'b', name: 'Bタイプ', image: '/images/vr/B.jpg' },
+  { id: 'c', name: 'Cタイプ', image: '/images/vr/A.jpg' },
+  { id: 'd', name: 'Dタイプ', image: '/images/vr/B.jpg' },
+  { id: 'e', name: 'Eタイプ', image: '/images/vr/A.jpg' },
+  { id: 'f', name: 'Fタイプ', image: '/images/vr/B.jpg' },
+  { id: 'g', name: 'Gタイプ', image: '/images/vr/A.jpg' },
+  { id: 'h', name: 'Hタイプ', image: '/images/vr/B.jpg' },
+  { id: 'i', name: 'Iタイプ', image: '/images/vr/A.jpg' },
+  { id: 'j', name: 'Jタイプ', image: '/images/vr/J.jpg' },
 ]
 
 export function MansionPanel() {
@@ -53,13 +54,13 @@ export function MansionPanel() {
   return (
     <div className="px-5 py-6">
       {/* Tab Toggle */}
-      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-8">
+      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-2">
         <button
           onClick={() => setViewType('common')}
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'common'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 '
           }`}
         >
           散策
@@ -69,7 +70,7 @@ export function MansionPanel() {
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'private'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 '
           }`}
         >
           CGパース
@@ -79,7 +80,7 @@ export function MansionPanel() {
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'vr'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 '
           }`}
         >
           室内VR
@@ -87,7 +88,7 @@ export function MansionPanel() {
       </div>
 
       {viewType === 'common' && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {cgSpots.map((spot) => {
             const isActive = selectedCgSpot === spot.id
             return (
@@ -97,7 +98,7 @@ export function MansionPanel() {
                 className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium">{spot.name}</span>
@@ -108,11 +109,11 @@ export function MansionPanel() {
       )}
 
       {viewType === 'private' && (
-        <div className="space-y-8">
+        <div className="space-y-2">
           {/* 1F Section */}
           <div>
-            <div className="flex justify-center mb-4"><span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">1F</span></div>
-            <div className="space-y-4">
+            <div className="flex justify-center mb-4"><span className="px-5 py-2 bg-gray-200 text-gray-500 text-xs font-medium tracking-widest rounded-full">1F</span></div>
+            <div className="space-y-2">
               {floor1Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
                 return (
@@ -128,7 +129,7 @@ export function MansionPanel() {
                     className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                     }`}
                   >
                     <span className="text-sm font-medium">{spot.name}</span>
@@ -140,8 +141,8 @@ export function MansionPanel() {
 
           {/* 2F Section */}
           <div>
-            <div className="flex justify-center mb-4"><span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">2F</span></div>
-            <div className="space-y-4">
+            <div className="flex justify-center mb-4"><span className="px-5 py-2 bg-gray-200 text-gray-500 text-xs font-medium tracking-widest rounded-full">2F</span></div>
+            <div className="space-y-2">
               {floor2Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
                 return (
@@ -157,7 +158,7 @@ export function MansionPanel() {
                     className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                     }`}
                   >
                     <span className="text-sm font-medium">{spot.name}</span>
@@ -170,7 +171,7 @@ export function MansionPanel() {
       )}
 
       {viewType === 'vr' && (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           {rooms.map((room) => {
             const isActive = currentRoom?.id === room.id
             return (
@@ -190,7 +191,7 @@ export function MansionPanel() {
                 className={`px-4 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium">{room.name}</span>

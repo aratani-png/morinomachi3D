@@ -4,10 +4,10 @@ import { ViewPanel } from '../panels/ViewPanel'
 import { MansionPanel } from '../panels/MansionPanel'
 import type { ModeType } from '../../types'
 
-const modes: { id: ModeType; label: string; number: string }[] = [
-  { id: 'ground', label: '周辺を見る', number: '01' },
-  { id: 'view', label: '眺望を見る', number: '02' },
-  { id: 'mansion', label: 'マンションを見る', number: '03' },
+const modes: { id: ModeType; label: string; subLabel: string; number: string }[] = [
+  { id: 'ground', label: '地上', subLabel: 'シーン', number: '01' },
+  { id: 'view', label: '眺望', subLabel: 'シーン', number: '02' },
+  { id: 'mansion', label: 'マンション', subLabel: 'シーン', number: '03' },
 ]
 
 export function Sidebar() {
@@ -42,13 +42,12 @@ export function Sidebar() {
                     ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
                     ${isActive
                       ? 'bg-gray-900 text-white shadow-lg scale-[1.02]'
-                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 hover:shadow-md hover:scale-[1.02]'
+                      : 'bg-gray-50 text-gray-700 hover:bg-gray-200 hover:scale-[1.02]'
                     }
                   `}
                 >
-                  <span className="text-sm font-semibold tracking-wide">
-                    {mode.label.replace('を見る', '')}
-                  </span>
+                  <span className="text-sm font-semibold tracking-wide block">{mode.label}</span>
+                  <span className="text-xs tracking-wide block">{mode.subLabel}</span>
                 </button>
               )
             })}

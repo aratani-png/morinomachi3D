@@ -53,13 +53,13 @@ export function ViewPanel() {
   return (
     <div className="px-5 py-6">
       {/* Step 1: Direction */}
-      <div className="mb-8">
+      <div className="mb-2">
         <div className="flex justify-center mb-4">
-          <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+          <span className="px-5 py-2 bg-gray-200 text-gray-500 text-xs font-medium tracking-widest rounded-full">
             方角を選択
           </span>
         </div>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-4 gap-2">
           {directions.map((dir) => {
             const isSelected = selectedDirection === dir.id
             return (
@@ -69,7 +69,7 @@ export function ViewPanel() {
                 className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                 }`}
               >
                 {dir.label}
@@ -82,11 +82,11 @@ export function ViewPanel() {
       {/* Step 2: Floor */}
       <div className={`transition-opacity duration-300 ${selectedDirection ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
         <div className="flex justify-center mb-4">
-          <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+          <span className="px-5 py-2 bg-gray-200 text-gray-500 text-xs font-medium tracking-widest rounded-full">
             階数を選択
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-2">
           {floors.map((floor) => {
             const isSelected = current?.direction === selectedDirection && current?.floor === floor
 
@@ -98,7 +98,7 @@ export function ViewPanel() {
                 className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                 }`}
               >
                 {floor}F

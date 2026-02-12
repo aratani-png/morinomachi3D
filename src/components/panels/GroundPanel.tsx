@@ -4,7 +4,7 @@ import { useAppStore } from '../../stores/appStore'
 type GroundView = 'walk' | 'map'
 
 const walkScenes = [
-  { id: 'free', name: '3D散策', image: 'iframe:https://arrival.space/79614791_9081' },
+  { id: 'free', name: 'フリー散策', image: 'iframe:https://arrival.space/79614791_9081' },
   { id: 'grace', name: '杜の街グレース', image: '/images/ground/杜の街.png' },
   { id: 'busstop', name: 'バス停・駐車場', image: '/images/ground/バス停.png' },
 ]
@@ -60,13 +60,13 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
   return (
     <div className="px-5 py-6">
       {/* Tab Toggle */}
-      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-8">
+      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-2">
         <button
           onClick={() => setGroundView('walk')}
           className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'walk'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 '
           }`}
         >
           散策
@@ -79,7 +79,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
           className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'map'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-200 hover:border-gray-400 '
           }`}
         >
           周辺MAP
@@ -87,7 +87,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
       </div>
 
       {groundView === 'walk' ? (
-        <div className="space-y-4">
+        <div className="space-y-2">
           {walkScenes.map((scene) => {
             const isActive = selectedScene === scene.id
             return (
@@ -97,7 +97,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                 className={`w-full px-5 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium">{scene.name}</span>
@@ -106,15 +106,15 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
           })}
         </div>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-2">
           {facilities.map((group) => (
             <div key={group.category}>
               <div className="flex justify-center mb-4">
-                <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+                <span className="px-5 py-2 bg-gray-200 text-gray-500 text-xs font-medium tracking-widest rounded-full">
                   {group.category}
                 </span>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {group.items.map((facility) => {
                   const isActive = selectedFacility === facility.id
                   return (
@@ -124,7 +124,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                       className={`w-full flex flex-col items-center justify-center px-5 py-5 rounded-xl transition-all duration-200 border ${
                         isActive
                           ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                          : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
+                          : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-200 hover:border-gray-400 hover:scale-[1.02]'
                       }`}
                     >
                       <span className="text-sm font-medium">{facility.name}</span>
