@@ -7,18 +7,19 @@ import type { ModeType } from '../../types'
 const modes: { id: ModeType; label: string; sublabel: string }[] = [
   { id: 'ground', label: '地上', sublabel: 'Ground View' },
   { id: 'view', label: '眺望', sublabel: 'Panorama' },
-  { id: 'mansion', label: '建物', sublabel: 'Building' },
+  { id: 'mansion', label: 'マンション', sublabel: 'Mansion' },
 ]
 
 export function Sidebar() {
-  const { currentMode, setMode, isTransitioning } = useAppStore()
+  const { currentMode, setMode, isTransitioning, sidebarOpen, setSidebarOpen } = useAppStore()
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-20 lg:w-80 z-50 flex flex-col">
+    <aside className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-20 lg:w-80' : 'w-0 lg:w-0'}`}>
       {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950" />
       <div className="absolute inset-0 bg-gradient-to-r from-amber-900/5 via-transparent to-transparent" />
       <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent" />
+
 
       {/* Content */}
       <div className="relative flex flex-col h-full overflow-hidden">
@@ -30,8 +31,8 @@ export function Sidebar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             </div>
-            <div className="hidden lg:block">
-              <h1 className="text-white/90 font-extralight tracking-[0.15em] text-sm">MORINOMACHI</h1>
+            <div className={`transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
+              <h1 className="text-white/90 font-extralight tracking-[0.15em] text-sm">杜の街</h1>
               <p className="text-amber-200/50 text-[9px] tracking-[0.3em] font-light">GRACE RESIDENCE</p>
             </div>
           </div>
@@ -39,7 +40,7 @@ export function Sidebar() {
 
         {/* Mode Navigation */}
         <nav className="flex-shrink-0 p-3 lg:p-5 border-b border-white/[0.04]">
-          <p className="hidden lg:block text-[9px] uppercase tracking-[0.25em] text-stone-600 mb-4 px-1 font-light">
+          <p className={`text-[9px] uppercase tracking-[0.25em] text-stone-600 mb-4 px-1 font-light transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
             View Mode
           </p>
           <div className="flex lg:flex-col gap-1.5 lg:gap-2">
@@ -85,7 +86,7 @@ export function Sidebar() {
                         </svg>
                       )}
                     </div>
-                    <div className="hidden lg:block text-left">
+                    <div className={`text-left transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
                       <p className={`text-sm font-light tracking-wide ${isActive ? 'text-white/90' : 'text-stone-400 group-hover:text-stone-200'}`}>
                         {mode.label}
                       </p>
@@ -101,27 +102,12 @@ export function Sidebar() {
         </nav>
 
         {/* Mode-specific Panel Content */}
-        <div className="hidden lg:block flex-1 overflow-y-auto p-5 custom-scrollbar">
+        <div className={`flex-1 overflow-y-auto p-5 custom-scrollbar transition-opacity duration-300 ${sidebarOpen ? 'hidden lg:block opacity-100' : 'hidden opacity-0'}`}>
           <GroundPanel />
           <ViewPanel />
           <MansionPanel />
         </div>
 
-        {/* Bottom Info */}
-        <div className="flex-shrink-0 p-4 lg:p-5 border-t border-white/[0.04]">
-          <div className="hidden lg:block">
-            <p className="text-[9px] uppercase tracking-[0.25em] text-stone-600 mb-3 font-light">Contact</p>
-            <p className="text-white/80 text-sm font-light tracking-wider">0120-XXX-XXX</p>
-            <p className="text-stone-600 text-[10px] mt-1.5 tracking-wide">10:00 - 18:00</p>
-          </div>
-          <div className="lg:hidden flex justify-center">
-            <div className="w-9 h-9 rounded-xl bg-stone-800/50 border border-white/[0.04] flex items-center justify-center">
-              <svg className="w-4 h-4 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-          </div>
-        </div>
       </div>
     </aside>
   )

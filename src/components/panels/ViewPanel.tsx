@@ -55,7 +55,7 @@ export function ViewPanel() {
       {/* Header */}
       <div>
         <p className="text-[10px] uppercase tracking-[0.2em] text-stone-400 mb-2">Panorama View</p>
-        <h3 className="text-2xl font-light text-white tracking-wide">眺望を確認</h3>
+        <h3 className="text-2xl font-light text-white tracking-wide">眺望</h3>
       </div>
 
       {/* Step 1: Direction Selector */}
