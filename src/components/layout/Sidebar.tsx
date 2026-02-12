@@ -42,7 +42,7 @@ export function Sidebar() {
                     ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
                     ${isActive
                       ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                      : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                      : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                     }
                   `}
                 >

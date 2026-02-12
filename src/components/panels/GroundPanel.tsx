@@ -66,7 +66,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
           className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'walk'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
           }`}
         >
           散策
@@ -79,7 +79,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
           className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'map'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
           }`}
         >
           周辺MAP
@@ -97,7 +97,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                 className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium pl-2">{scene.name}</span>
@@ -122,7 +122,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
                       className={`w-full flex items-center justify-between px-5 py-5 rounded-xl transition-all duration-200 border ${
                         isActive
                           ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                          : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                          : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                       }`}
                     >
                       <span className="text-sm font-medium pl-2">{facility.name}</span>

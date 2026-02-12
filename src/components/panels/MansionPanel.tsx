@@ -59,7 +59,7 @@ export function MansionPanel() {
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'common'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
           }`}
         >
           散策
@@ -69,7 +69,7 @@ export function MansionPanel() {
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'private'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
           }`}
         >
           CGパース
@@ -79,7 +79,7 @@ export function MansionPanel() {
           className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'vr'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md'
           }`}
         >
           室内VR
@@ -97,7 +97,7 @@ export function MansionPanel() {
                 className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium pl-2">{spot.name}</span>
@@ -128,7 +128,7 @@ export function MansionPanel() {
                     className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                     }`}
                   >
                     <span className="text-sm font-medium pl-2">{spot.name}</span>
@@ -157,7 +157,7 @@ export function MansionPanel() {
                     className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                     }`}
                   >
                     <span className="text-sm font-medium pl-2">{spot.name}</span>
@@ -190,7 +190,7 @@ export function MansionPanel() {
                 className={`px-4 py-5 rounded-xl text-center transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 <span className="text-sm font-medium">{room.name}</span>

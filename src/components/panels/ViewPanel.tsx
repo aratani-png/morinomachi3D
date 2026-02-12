@@ -67,7 +67,7 @@ export function ViewPanel() {
                 className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 {dir.label}
@@ -94,7 +94,7 @@ export function ViewPanel() {
                 className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
-                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
+                    : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100 hover:border-gray-400 hover:shadow-md hover:scale-[1.02]'
                 }`}
               >
                 {floor}F
