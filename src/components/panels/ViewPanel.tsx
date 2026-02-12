@@ -64,7 +64,7 @@ export function ViewPanel() {
               <button
                 key={dir.id}
                 onClick={() => setSelectedDirection(dir.id)}
-                className={`py-4 rounded-xl text-sm font-medium transition-all duration-200 border ${
+                className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -82,7 +82,7 @@ export function ViewPanel() {
         <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
           階数を選択
         </p>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-4">
           {floors.map((floor) => {
             const isSelected = current?.direction === selectedDirection && current?.floor === floor
 
@@ -91,7 +91,7 @@ export function ViewPanel() {
                 key={floor}
                 onClick={() => handleFloorSelect(floor)}
                 disabled={!selectedDirection}
-                className={`py-4 rounded-xl text-sm font-medium transition-all duration-200 border ${
+                className={`py-5 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'

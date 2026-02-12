@@ -87,14 +87,14 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
       </div>
 
       {groundView === 'walk' ? (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {walkScenes.map((scene) => {
             const isActive = selectedScene === scene.id
             return (
               <button
                 key={scene.id}
                 onClick={() => handleSceneSelect(scene)}
-                className={`w-full px-5 py-4 rounded-xl text-left transition-all duration-200 border ${
+                className={`w-full px-5 py-5 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -112,14 +112,14 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
               <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
                 {group.category}
               </p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {group.items.map((facility) => {
                   const isActive = selectedFacility === facility.id
                   return (
                     <button
                       key={facility.id}
                       onClick={() => handleFacilitySelect(facility)}
-                      className={`w-full flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-200 border ${
+                      className={`w-full flex items-center justify-between px-5 py-5 rounded-xl transition-all duration-200 border ${
                         isActive
                           ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                           : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
