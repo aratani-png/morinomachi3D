@@ -28,8 +28,8 @@ export function Sidebar() {
         </div>
 
         {/* Mode Navigation */}
-        <nav className="flex-shrink-0 px-4 pt-4 pb-6 border-b border-gray-100">
-          <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50">
+        <nav className="flex-shrink-0 px-5 pt-5 pb-6 border-b border-gray-100">
+          <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50">
             {modes.map((mode) => {
               const isActive = currentMode === mode.id
               return (
@@ -38,7 +38,7 @@ export function Sidebar() {
                   onClick={() => !isTransitioning && setMode(mode.id)}
                   disabled={isTransitioning}
                   className={`
-                    flex-1 px-2 py-2.5 rounded-lg transition-all duration-200 text-center border
+                    flex-1 px-3 py-3 rounded-lg transition-all duration-200 text-center border
                     ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
                     ${isActive
                       ? 'bg-gray-900 text-white border-gray-900 shadow-md'
@@ -46,7 +46,7 @@ export function Sidebar() {
                     }
                   `}
                 >
-                  <span className="text-xs font-medium">
+                  <span className="text-sm font-medium">
                     {mode.label.replace('を見る', '')}
                   </span>
                 </button>

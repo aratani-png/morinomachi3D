@@ -51,12 +51,12 @@ export function MansionPanel() {
   }
 
   return (
-    <div className="px-6 py-5">
+    <div className="px-5 py-6">
       {/* Tab Toggle */}
-      <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50 mb-6">
+      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-8">
         <button
           onClick={() => setViewType('common')}
-          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'common'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -66,7 +66,7 @@ export function MansionPanel() {
         </button>
         <button
           onClick={() => setViewType('private')}
-          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'private'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -76,7 +76,7 @@ export function MansionPanel() {
         </button>
         <button
           onClick={() => setViewType('vr')}
-          className={`flex-1 px-3 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-3 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             viewType === 'vr'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -87,14 +87,14 @@ export function MansionPanel() {
       </div>
 
       {viewType === 'common' && (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {cgSpots.map((spot) => {
             const isActive = selectedCgSpot === spot.id
             return (
               <button
                 key={spot.id}
                 onClick={() => handleCgSpotSelect(spot)}
-                className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                className={`w-full px-5 py-4 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -108,11 +108,11 @@ export function MansionPanel() {
       )}
 
       {viewType === 'private' && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* 1F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">1F</p>
-            <div className="space-y-2">
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">1F</p>
+            <div className="space-y-3">
               {floor1Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
                 return (
@@ -125,7 +125,7 @@ export function MansionPanel() {
                       const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
                       setPreviewImage(spot.image, title)
                     }}
-                    className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                    className={`w-full px-5 py-4 rounded-xl text-left transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -140,8 +140,8 @@ export function MansionPanel() {
 
           {/* 2F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">2F</p>
-            <div className="space-y-2">
+            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">2F</p>
+            <div className="space-y-3">
               {floor2Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
                 return (
@@ -154,7 +154,7 @@ export function MansionPanel() {
                       const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
                       setPreviewImage(spot.image, title)
                     }}
-                    className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                    className={`w-full px-5 py-4 rounded-xl text-left transition-all duration-200 border ${
                       isActive
                         ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                         : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -170,7 +170,7 @@ export function MansionPanel() {
       )}
 
       {viewType === 'vr' && (
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3">
           {rooms.map((room) => {
             const isActive = currentRoom?.id === room.id
             return (
@@ -187,7 +187,7 @@ export function MansionPanel() {
                   setSelectedHallSpot(null)
                   setPreviewImage(room.image, room.name)
                 }}
-                className={`px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                className={`px-4 py-4 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'

@@ -58,12 +58,12 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
   if (!forceShow && currentMode !== 'ground') return null
 
   return (
-    <div className="px-6 py-5">
+    <div className="px-5 py-6">
       {/* Tab Toggle */}
-      <div className="flex gap-2 p-1 border border-gray-200 rounded-xl bg-gray-50 mb-6">
+      <div className="flex gap-2 p-1.5 border border-gray-200 rounded-xl bg-gray-50 mb-8">
         <button
           onClick={() => setGroundView('walk')}
-          className={`flex-1 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'walk'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -76,7 +76,7 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
             setGroundView('map')
             setPreviewImage('/images/ground/map.jpg', '周辺MAP')
           }}
-          className={`flex-1 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200 ${
+          className={`flex-1 px-4 py-2.5 text-sm font-medium rounded-lg border transition-all duration-200 ${
             groundView === 'map'
               ? 'bg-gray-900 text-white border-gray-900 shadow-md'
               : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300'
@@ -87,14 +87,14 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
       </div>
 
       {groundView === 'walk' ? (
-        <div className="space-y-2">
+        <div className="space-y-3">
           {walkScenes.map((scene) => {
             const isActive = selectedScene === scene.id
             return (
               <button
                 key={scene.id}
                 onClick={() => handleSceneSelect(scene)}
-                className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
+                className={`w-full px-5 py-4 rounded-xl text-left transition-all duration-200 border ${
                   isActive
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -106,20 +106,20 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
           })}
         </div>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {facilities.map((group) => (
             <div key={group.category}>
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
                 {group.category}
               </p>
-              <div className="space-y-2">
+              <div className="space-y-3">
                 {group.items.map((facility) => {
                   const isActive = selectedFacility === facility.id
                   return (
                     <button
                       key={facility.id}
                       onClick={() => handleFacilitySelect(facility)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 border ${
+                      className={`w-full flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-200 border ${
                         isActive
                           ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                           : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'

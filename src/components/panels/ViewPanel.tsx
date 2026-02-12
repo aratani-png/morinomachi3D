@@ -51,20 +51,20 @@ export function ViewPanel() {
   const current = getCurrentSelection()
 
   return (
-    <div className="px-6 py-5">
+    <div className="px-5 py-6">
       {/* Step 1: Direction */}
-      <div className="mb-6">
-        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+      <div className="mb-8">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
           方角を選択
         </p>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-3">
           {directions.map((dir) => {
             const isSelected = selectedDirection === dir.id
             return (
               <button
                 key={dir.id}
                 onClick={() => setSelectedDirection(dir.id)}
-                className={`py-3 rounded-lg text-sm font-medium transition-all duration-200 border ${
+                className={`py-4 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -79,10 +79,10 @@ export function ViewPanel() {
 
       {/* Step 2: Floor */}
       <div className={`transition-opacity duration-300 ${selectedDirection ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
+        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4">
           階数を選択
         </p>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-3">
           {floors.map((floor) => {
             const isSelected = current?.direction === selectedDirection && current?.floor === floor
 
@@ -91,7 +91,7 @@ export function ViewPanel() {
                 key={floor}
                 onClick={() => handleFloorSelect(floor)}
                 disabled={!selectedDirection}
-                className={`py-3 rounded-lg text-sm font-medium transition-all duration-200 border ${
+                className={`py-4 rounded-xl text-sm font-medium transition-all duration-200 border ${
                   isSelected
                     ? 'bg-gray-900 text-white border-gray-900 shadow-md'
                     : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
@@ -106,8 +106,8 @@ export function ViewPanel() {
 
       {/* Current Selection */}
       {currentViewpoint && (
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-xs text-gray-400 mb-1">選択中</p>
+        <div className="mt-8 p-5 bg-gray-50 rounded-xl border border-gray-100">
+          <p className="text-xs text-gray-400 mb-2">選択中</p>
           <p className="text-sm font-medium text-gray-900">{currentViewpoint.name}</p>
         </div>
       )}
