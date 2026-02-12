@@ -45,7 +45,9 @@ export function MansionPanel() {
 
   const handleCgSpotSelect = (spot: typeof cgSpots[0]) => {
     setSelectedCgSpot(spot.id)
-    setPreviewImage(spot.image, spot.name)
+    // Add "散策" suffix for white screens in 散策 section
+    const title = spot.image.startsWith('white:') ? `${spot.name}散策` : spot.name
+    setPreviewImage(spot.image, title)
   }
 
   return (
@@ -119,7 +121,9 @@ export function MansionPanel() {
                     onClick={() => {
                       setSelectedHallSpot(spot.id)
                       setCurrentRoom(null)
-                      setPreviewImage(spot.image, spot.name)
+                      // Add "パース" suffix for white screens in CGパース section
+                      const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
+                      setPreviewImage(spot.image, title)
                     }}
                     className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
                       isActive
@@ -146,7 +150,9 @@ export function MansionPanel() {
                     onClick={() => {
                       setSelectedHallSpot(spot.id)
                       setCurrentRoom(null)
-                      setPreviewImage(spot.image, spot.name)
+                      // Add "パース" suffix for white screens in CGパース section
+                      const title = spot.image.startsWith('white:') ? `${spot.name}パース` : spot.name
+                      setPreviewImage(spot.image, title)
                     }}
                     className={`w-full px-4 py-3 rounded-lg text-left transition-all duration-200 border ${
                       isActive

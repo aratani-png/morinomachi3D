@@ -18,11 +18,9 @@ export function PreviewOverlay() {
 
   if (isWhite) {
     return (
-      <div className="absolute inset-0 bg-white">
+      <div className="absolute inset-0 bg-white flex items-center justify-center">
         {previewTitle && (
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200 shadow-lg">
-            <p className="text-gray-900 font-medium tracking-wider">{previewTitle}</p>
-          </div>
+          <p className="text-gray-300 text-3xl font-medium tracking-widest">{previewTitle}</p>
         )}
       </div>
     )
