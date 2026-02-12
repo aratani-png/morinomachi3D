@@ -2,7 +2,17 @@ import { useAppStore } from '../stores/appStore'
 import { PanoramaViewer } from './PanoramaViewer'
 
 export function PreviewOverlay() {
-  const { previewImage, previewTitle } = useAppStore()
+  const { previewImage, previewTitle, currentMode } = useAppStore()
+
+  // Show welcome screen when no mode selected and no preview
+  if (!previewImage && currentMode === null) {
+    return (
+      <div className="absolute inset-0 bg-white flex flex-col items-center justify-center">
+        <h1 className="text-4xl font-bold text-gray-800 tracking-widest mb-4">杜の街グレース岡山</h1>
+        <p className="text-lg text-gray-400 tracking-wider">MORINOMACHI GRACE OKAYAMA</p>
+      </div>
+    )
+  }
 
   if (!previewImage) return null
 
