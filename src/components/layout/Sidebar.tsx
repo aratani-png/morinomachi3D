@@ -7,7 +7,7 @@ import type { ModeType } from '../../types'
 const modes: { id: ModeType; label: string; number: string }[] = [
   { id: 'ground', label: '周辺を見る', number: '01' },
   { id: 'view', label: '眺望を見る', number: '02' },
-  { id: 'mansion', label: '建物を見る', number: '03' },
+  { id: 'mansion', label: 'マンションを見る', number: '03' },
 ]
 
 export function Sidebar() {
