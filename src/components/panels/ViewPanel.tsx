@@ -54,9 +54,11 @@ export function ViewPanel() {
     <div className="px-5 py-6">
       {/* Step 1: Direction */}
       <div className="mb-8">
-        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">
-          方角を選択
-        </p>
+        <div className="flex justify-center mb-4">
+          <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+            方角を選択
+          </span>
+        </div>
         <div className="grid grid-cols-4 gap-3">
           {directions.map((dir) => {
             const isSelected = selectedDirection === dir.id
@@ -79,9 +81,11 @@ export function ViewPanel() {
 
       {/* Step 2: Floor */}
       <div className={`transition-opacity duration-300 ${selectedDirection ? 'opacity-100' : 'opacity-40 pointer-events-none'}`}>
-        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">
-          階数を選択
-        </p>
+        <div className="flex justify-center mb-4">
+          <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+            階数を選択
+          </span>
+        </div>
         <div className="grid grid-cols-3 gap-4">
           {floors.map((floor) => {
             const isSelected = current?.direction === selectedDirection && current?.floor === floor

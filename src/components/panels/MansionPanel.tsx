@@ -111,7 +111,7 @@ export function MansionPanel() {
         <div className="space-y-8">
           {/* 1F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">1F</p>
+            <div className="flex justify-center mb-4"><span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">1F</span></div>
             <div className="space-y-4">
               {floor1Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id
@@ -140,7 +140,7 @@ export function MansionPanel() {
 
           {/* 2F Section */}
           <div>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">2F</p>
+            <div className="flex justify-center mb-4"><span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">2F</span></div>
             <div className="space-y-4">
               {floor2Spots.map((spot) => {
                 const isActive = selectedHallSpot === spot.id

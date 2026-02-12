@@ -109,9 +109,11 @@ export function GroundPanel({ forceShow = false }: GroundPanelProps) {
         <div className="space-y-8">
           {facilities.map((group) => (
             <div key={group.category}>
-              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 text-center">
-                {group.category}
-              </p>
+              <div className="flex justify-center mb-4">
+                <span className="px-4 py-2 bg-gray-100 text-gray-600 text-xs font-semibold tracking-wider rounded-full">
+                  {group.category}
+                </span>
+              </div>
               <div className="space-y-4">
                 {group.items.map((facility) => {
                   const isActive = selectedFacility === facility.id
